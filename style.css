@@ -1,0 +1,13 @@
+.img-12-min {
+    max-width: 120px;
+    height:80px;
+}
+
+.img-12-max {
+  max-height: 250px; 
+  padding:10px;
+}
+
+.active-img {
+    border: 1px solid black;
+}
