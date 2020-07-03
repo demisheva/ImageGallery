@@ -1,13 +1,131 @@
-.img-12-min {
-    max-width: 120px;
-    height:80px;
+body{
+  background-color: #464646;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.img-12-max {
-  max-height: 250px; 
-  padding:10px;
+.image-gallery{
+  display: flex;
+  flex-direction: column;
 }
 
-.active-img {
-    border: 1px solid black;
+.big-img{
+  width: 100%;
+  background-color: #3a3a3a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; 
+}
+
+.big-img img{
+  max-height: 400px;
+  max-width: 100%;
+  transition: all ease 1s;
+}
+
+.gallery-wrapper{
+  overflow: hidden;
+  margin-top: 2%;
+  position: relative;
+  left: 0;
+  height: 100px;
+  align-self: center;
+  transition: all ease 1s;
+  text-align: center;
+  width: 100%;
+  display: flex;
+}
+
+.gallery-wrapper img {
+  height: 98px;
+  margin: 0 1px;
+  opacity: 0.5;
+  border: 1px solid transparent;
+  transition: all ease 0.5s;
+}
+
+.gallery-wrapper img:hover,
+img.active-img{
+  opacity: 1;
+  cursor: pointer;
+  border: 1px solid #ababab;
+}
+
+.navigation-big{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.navigation-big .prev,
+.navigation-big .next{
+  height: 400px;
+  width: 50%;
+  position: relative;
+}
+
+.navigation-big .prev:hover,
+.navigation-big .next:hover,
+.navigation-big .prev:hover i,
+.navigation-big .next:hover i{
+  cursor: pointer;
+}
+
+.navigation-big .prev:hover i,
+.navigation-big .next:hover i{
+  color: #bbb;
+}
+
+.navigation-big .prev i,
+.navigation-big .next i{
+  position: absolute;
+  top: 50%;
+}
+
+.navigation-big .prev i{
+  left: 1rem;
+}
+.navigation-big .next i{
+  right: 1rem;
+}
+
+.navigation-small{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-top: 1%; 
+  z-index: 1;
+}
+
+.navigation-small .prev,
+.navigation-small .next{
+
+}
+
+.navigation-small .prev:hover i,
+.navigation-small .next:hover i,
+.navigation-small .reset:hover i{
+  color: #bbb;
+  cursor: pointer;
+}
+
+.navigation-small .prev i,
+.navigation-small .next i{
+
+}
+
+.navigation-small .prev i{
+  left: 0;
+}
+.navigation-small .next i{
+  right: 0;
+}
+
+@media only screen and (max-width: 600px) {
+
 }
