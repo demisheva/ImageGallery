@@ -51,7 +51,8 @@ function nextSliderFunction() {
             } else {
                 images[i + 1].classList.add('active-img');
                 sliderImg.src = images[i + 1].src;
-                break
+                nextGalleryFunction();
+                break;
             }
         }
     }
@@ -79,10 +80,30 @@ function prevSliderFunction() {
 }
 
 
+let marginLeft = 0;
+const widthGallery = document.querySelector('.gallery-wrapper').offsetWidth;
+let widthAllImg = 0;
+images.forEach((element) => { widthAllImg += element.offsetWidth })
+
 
 
 function nextGalleryFunction() {
-    console.log('nextClick');
+
+    images.forEach((element) => {
+        if (element.classList.contains('active-img')) {
+            if (element == images[images.length - 1]) {
+                resetGalleryFunction()
+            } else {
+                marginLeft += element.offsetWidth;
+                if (widthGallery <= widthAllImg - marginLeft) {
+                    images[0].style.marginLeft = '-' + marginLeft + 'px'
+                } else {
+                    images[0].style.marginLeft = ` -${widthAllImg - widthGallery}px`;
+                }
+            }
+        }
+    })
+
 
 }
 
@@ -91,7 +112,9 @@ function prevGalleryFunction() {
 }
 
 function resetGalleryFunction() {
-    console.log('resetClick')
+    console.log('resetClick');
+    marginLeft = 0;
+    images[0].style.marginLeft = marginLeft
     for (let i = 0; i < images.length; i++) {
         if (images[i].classList.contains('active-img')) {
             images[i].classList.remove('active-img');

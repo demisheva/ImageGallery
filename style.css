@@ -39,7 +39,6 @@ body{
 
 .gallery-wrapper img {
   height: 98px;
-  margin: 0 1px;
   opacity: 0.5;
   border: 1px solid transparent;
   transition: all ease 0.5s;
