@@ -33,7 +33,7 @@ images.forEach((element) => {
         images.forEach((elem) => { elem.classList.remove('active-img') })
         element.classList.add('active-img');
         sliderImg.src = element.src;
-        nextGalleryFunction();
+        nextPrevGalleryFunction();
         slider = setInterval(nextSliderFunction, 3000)
     })
 })
@@ -46,12 +46,12 @@ function nextSliderFunction() {
             if (images[images.length] == images[i + 1]) {
                 images[0].classList.add('active-img');
                 sliderImg.src = images[0].src;
-                nextGalleryFunction();
+                nextPrevGalleryFunction();
                 break
             } else {
                 images[i + 1].classList.add('active-img');
                 sliderImg.src = images[i + 1].src;
-                nextGalleryFunction();
+                nextPrevGalleryFunction();
                 break;
             }
         }
@@ -67,12 +67,12 @@ function prevSliderFunction() {
             if (images[images.length] == images[i - 1]) {
                 images[images.length - 1].classList.add('active-img');
                 sliderImg.src = images[images.length - 1].src;
-                nextGalleryFunction();
+                nextPrevGalleryFunction();
                 break
             } else {
                 images[i - 1].classList.add('active-img');
                 sliderImg.src = images[i - 1].src;
-                nextGalleryFunction();
+                nextPrevGalleryFunction();
                 break
             }
         }
@@ -101,7 +101,7 @@ function findLeft() {
     console.log(left)
 }
 
-function nextGalleryFunction() {
+function nextPrevGalleryFunction() {
     findLeft()
     if (widthGallery <= widthAllImg - left) {
         images[0].style.marginLeft = ` -${left}px`
@@ -111,15 +111,6 @@ function nextGalleryFunction() {
         images[0].style.marginLeft = ` -${widthAllImg - widthGallery}px`
     }
 }
-
-// function prevGalleryFunction() {
-//     findLeft()
-//     if (images[0].classList.contains('active-img')) {
-//         images[0].style.marginLeft = `0px`
-//     } else {
-//         images[0].style.marginLeft = ` -${left}px`
-//     }
-// }
 
 function resetGalleryFunction() {
     left = 0;

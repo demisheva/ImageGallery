@@ -15,11 +15,11 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px; 
+  height: 80vh; 
 }
 
 .big-img img{
-  max-height: 400px;
+  max-height: 80vh;
   max-width: 100%;
   transition: all ease 1s;
 }
@@ -29,7 +29,7 @@ body{
   margin-top: 2%;
   position: relative;
   left: 0;
-  height: 100px;
+  height: 10vh;
   align-self: center;
   transition: all ease 1s;
   text-align: center;
@@ -42,7 +42,7 @@ body{
 }
 
 .gallery img {
-  height: 98px;
+  height: 9vh;
   opacity: 0.5;
   border: 1px solid transparent;
   transition: all ease 0.5s;
@@ -65,7 +65,7 @@ img.active-img{
 
 .navigation-big .prev,
 .navigation-big .next{
-  height: 400px;
+  height: 80vh;
   width: 50%;
   position: relative;
 }
@@ -75,6 +75,7 @@ img.active-img{
 .navigation-big .prev:hover i,
 .navigation-big .next:hover i{
   cursor: pointer;
+  background: none;
 }
 
 .navigation-big .prev:hover i,
