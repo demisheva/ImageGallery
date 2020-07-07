@@ -16,7 +16,6 @@ nextSliderImg.addEventListener("click", nextSliderFunction);
 prevSliderImg.addEventListener("click", prevSliderFunction);
 
 nextGalleryImgs.addEventListener("click", nextGalleryFunction);
-prevGalleryImgs.addEventListener("click", prevGalleryFunction);
 resetGalleryImgs.addEventListener("click", resetGalleryFunction);
 
 
@@ -91,7 +90,7 @@ function nextGalleryFunction() {
 
     images.forEach((element) => {
         if (element.classList.contains('active-img')) {
-            if (element == images[images.length - 1]) {
+            if (element == images[images.length - 1] ) {
                 resetGalleryFunction()
             } else {
                 marginLeft += element.offsetWidth;
@@ -99,20 +98,14 @@ function nextGalleryFunction() {
                     images[0].style.marginLeft = '-' + marginLeft + 'px'
                 } else {
                     images[0].style.marginLeft = ` -${widthAllImg - widthGallery}px`;
+                    marginLeft=widthAllImg - widthGallery
                 }
             }
         }
     })
-
-
-}
-
-function prevGalleryFunction() {
-    console.log('prevClick')
 }
 
 function resetGalleryFunction() {
-    console.log('resetClick');
     marginLeft = 0;
     images[0].style.marginLeft = marginLeft
     for (let i = 0; i < images.length; i++) {
