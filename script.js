@@ -15,8 +15,6 @@ document.querySelector('body').addEventListener("keyup", event => { if (event.ke
 prevSliderImg.addEventListener("click", prevSliderFunction);
 document.querySelector('body').addEventListener("keyup", event => { if (event.keyCode === 37) { prevSliderFunction() } });
 
-resetGalleryImgs.addEventListener("click", resetGalleryFunction);
-
 
 images.forEach((element) => {
     if (element.classList.contains('active-img')) {
