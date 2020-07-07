@@ -6,20 +6,15 @@ const nextSliderImg = document.querySelector('.navigation-big .next');
 const prevSliderImg = document.querySelector('.navigation-big .prev');
 const sliderImg = document.querySelector('.big-img img');
 
-const nextGalleryImgs = document.querySelector('.navigation-small .next');
-const prevGalleryImgs = document.querySelector('.navigation-small .prev');
 const resetGalleryImgs = document.querySelector('.navigation-small .reset');
 let galleryWrapper = document.querySelector('.gallery-wrapper')
 
 
 nextSliderImg.addEventListener("click", nextSliderFunction);
-document.querySelector('body').addEventListener("keyup", event=>{if (event.keyCode===39) {nextSliderFunction()}});
+document.querySelector('body').addEventListener("keyup", event => { if (event.keyCode === 39) { nextSliderFunction() } });
 prevSliderImg.addEventListener("click", prevSliderFunction);
-document.querySelector('body').addEventListener("keyup", event=>{if (event.keyCode===37) {prevSliderFunction()}});
+document.querySelector('body').addEventListener("keyup", event => { if (event.keyCode === 37) { prevSliderFunction() } });
 
-
-nextGalleryImgs.addEventListener("click", nextGalleryFunction);
-prevGalleryImgs.addEventListener("click", prevGalleryFunction);
 resetGalleryImgs.addEventListener("click", resetGalleryFunction);
 
 
@@ -38,6 +33,7 @@ images.forEach((element) => {
         images.forEach((elem) => { elem.classList.remove('active-img') })
         element.classList.add('active-img');
         sliderImg.src = element.src;
+        nextGalleryFunction();
         slider = setInterval(nextSliderFunction, 3000)
     })
 })
@@ -50,6 +46,7 @@ function nextSliderFunction() {
             if (images[images.length] == images[i + 1]) {
                 images[0].classList.add('active-img');
                 sliderImg.src = images[0].src;
+                nextGalleryFunction();
                 break
             } else {
                 images[i + 1].classList.add('active-img');
@@ -67,15 +64,15 @@ function prevSliderFunction() {
     for (let i = 0; i < images.length; i++) {
         if (images[i].classList.contains('active-img')) {
             images[i].classList.remove('active-img');
-
             if (images[images.length] == images[i - 1]) {
                 images[images.length - 1].classList.add('active-img');
                 sliderImg.src = images[images.length - 1].src;
+                nextGalleryFunction();
                 break
             } else {
                 images[i - 1].classList.add('active-img');
                 sliderImg.src = images[i - 1].src;
-                prevGalleryFunction();
+                nextGalleryFunction();
                 break
             }
         }
@@ -84,53 +81,49 @@ function prevSliderFunction() {
 }
 
 
-let marginLeft = 0;
 const widthGallery = document.querySelector('.gallery-wrapper').offsetWidth;
 let widthAllImg = 0;
 images.forEach((element) => { widthAllImg += element.offsetWidth })
 
-
+let left = 0;
+function findLeft() {
+    left = 0;
+    for (let i = 0; i < images.length; i++) {
+        if (images[0].classList.contains('active-img')) {
+            left = 0;
+            break;
+        } else if (images[i].classList.contains('active-img')) {
+            break;
+        } else {
+            left += images[i].offsetWidth;
+        }
+    }
+    console.log(left)
+}
 
 function nextGalleryFunction() {
-    console.log(marginLeft)
-    clearInterval(slider);
-    images.forEach((element) => {
-        if (element.classList.contains('active-img')) {
-            if (element == images[images.length - 1]) {
-                resetGalleryFunction()
-            } else {
-                marginLeft += element.offsetWidth;
-                if (widthGallery <= widthAllImg - marginLeft) {
-                    images[0].style.marginLeft = '-' + marginLeft + 'px'
-                } else {
-                    images[0].style.marginLeft = ` -${widthAllImg - widthGallery}px`;
-                    marginLeft=widthAllImg - widthGallery
-                }
-            }
-        }
-    })
-
+    findLeft()
+    if (widthGallery <= widthAllImg - left) {
+        images[0].style.marginLeft = ` -${left}px`
+    } else if (images[0].classList.contains('active-img')) {
+        images[0].style.marginLeft = `0px`
+    }else {
+        images[0].style.marginLeft = ` -${widthAllImg - widthGallery}px`
+    }
 }
 
-function prevGalleryFunction() {
-    console.log(marginLeft);
-    clearInterval(slider);
-    images.forEach((element) => {
-        if (element.classList.contains('active-img')) {
-            if (element == undefined ) {
-                images[0].style.marginLeft = ` -${widthAllImg - widthGallery}px`
-            } else {
-                marginLeft -= element.offsetWidth;
-                
-            }
-        }
-    })
-
-}
+// function prevGalleryFunction() {
+//     findLeft()
+//     if (images[0].classList.contains('active-img')) {
+//         images[0].style.marginLeft = `0px`
+//     } else {
+//         images[0].style.marginLeft = ` -${left}px`
+//     }
+// }
 
 function resetGalleryFunction() {
-    marginLeft = 0;
-    images[0].style.marginLeft = marginLeft
+    left = 0;
+    images[0].style.marginLeft = left
     for (let i = 0; i < images.length; i++) {
         if (images[i].classList.contains('active-img')) {
             images[i].classList.remove('active-img');
