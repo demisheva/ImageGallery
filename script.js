@@ -13,9 +13,13 @@ let galleryWrapper = document.querySelector('.gallery-wrapper')
 
 
 nextSliderImg.addEventListener("click", nextSliderFunction);
+document.querySelector('body').addEventListener("keyup", event=>{if (event.keyCode===39) {nextSliderFunction()}});
 prevSliderImg.addEventListener("click", prevSliderFunction);
+document.querySelector('body').addEventListener("keyup", event=>{if (event.keyCode===37) {prevSliderFunction()}});
+
 
 nextGalleryImgs.addEventListener("click", nextGalleryFunction);
+prevGalleryImgs.addEventListener("click", prevGalleryFunction);
 resetGalleryImgs.addEventListener("click", resetGalleryFunction);
 
 
@@ -71,11 +75,12 @@ function prevSliderFunction() {
             } else {
                 images[i - 1].classList.add('active-img');
                 sliderImg.src = images[i - 1].src;
+                prevGalleryFunction();
                 break
             }
         }
     }
-    slider = setInterval(nextSliderFunction, 3000)
+    slider = setInterval(nextSliderFunction, 3000);
 }
 
 
@@ -87,10 +92,11 @@ images.forEach((element) => { widthAllImg += element.offsetWidth })
 
 
 function nextGalleryFunction() {
-
+    console.log(marginLeft)
+    clearInterval(slider);
     images.forEach((element) => {
         if (element.classList.contains('active-img')) {
-            if (element == images[images.length - 1] ) {
+            if (element == images[images.length - 1]) {
                 resetGalleryFunction()
             } else {
                 marginLeft += element.offsetWidth;
@@ -103,6 +109,23 @@ function nextGalleryFunction() {
             }
         }
     })
+
+}
+
+function prevGalleryFunction() {
+    console.log(marginLeft);
+    clearInterval(slider);
+    images.forEach((element) => {
+        if (element.classList.contains('active-img')) {
+            if (element == undefined ) {
+                images[0].style.marginLeft = ` -${widthAllImg - widthGallery}px`
+            } else {
+                marginLeft -= element.offsetWidth;
+                
+            }
+        }
+    })
+
 }
 
 function resetGalleryFunction() {
